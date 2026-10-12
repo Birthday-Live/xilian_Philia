@@ -1,208 +1,601 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhiLia093 · 昔涟 | 往日的涟漪</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>昔涟-往日的涟漪</title>
+<style>
+  :root {
+    --m3-sys-pink-primary: #be185d;
+    --m3-sys-pink-tint: #f43f5e;
+    --m3-sys-pink-bg: #fff5f8;
+    --m3-sys-pink-surface: #ffffff;
+    --m3-sys-pink-container: #fce7f3;
+    --m3-sys-pink-container-low: #fff0f6;
+    --m3-sys-pink-on-container: #831843;
+    --m3-sys-outline: #f3d5e2;
+    --m3-sys-text: #1f1f23;
+    --m3-sys-text-sub: #64748b;
+    --m3-radius-xl: 28px;
+    --m3-radius-lg: 20px;
+    --m3-radius-md: 14px;
+    --m3-elevation-1: 0 1px 3px rgba(190, 24, 93, 0.05), 0 4px 12px rgba(190, 24, 93, 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--m3-sys-pink-bg);
+    color: var(--m3-sys-text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
+    line-height: 1.6;
+    padding-bottom: 72px;
+  }
+
+  /* 顶部标准 Material 3 应用栏 */
+  .m3-top-app-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--m3-sys-outline);
+  }
+  .app-bar-headline {
+    padding: 14px 20px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .app-bar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--m3-sys-pink-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.2px;
+  }
+  .app-bar-chip {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: var(--m3-sys-pink-container);
+    color: var(--m3-sys-pink-on-container);
+  }
+
+  /* 仿原生横滑药丸导航 */
+  .scroll-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 6px 16px 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .scroll-tabs::-webkit-scrollbar { display: none; }
+  .tab-pill {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--m3-sys-text-sub);
+    padding: 6px 16px;
+    border-radius: 99px;
+    background: transparent;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all .2s cubic-bezier(0,0,0.2,1);
+  }
+  .tab-pill.active {
+    background: var(--m3-sys-pink-container);
+    color: var(--m3-sys-pink-on-container);
+    font-weight: 600;
+  }
+
+  /* 布局容器 */
+  .m3-layout {
+    max-width: 1040px;
+    margin: 16px auto 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* 基础卡片样式 */
+  .m3-card {
+    background: var(--m3-sys-pink-surface);
+    border-radius: var(--m3-radius-lg);
+    border: 1px solid var(--m3-sys-outline);
+    padding: 20px;
+    box-shadow: var(--m3-elevation-1);
+  }
+
+  /* 头部主画报卡片 (Hero Profile) */
+  .hero-card {
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-height: 280px;
+    background: #000;
+  }
+  .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(20, 5, 12, 0.75) 100%);
+  }
+  .hero-caption {
+    position: absolute;
+    left: 20px;
+    bottom: 16px;
+    color: #fff;
+  }
+  .hero-name {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  .hero-sub {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+  .hero-body {
+    padding: 18px 20px;
+  }
+  .tags-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .m3-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--m3-sys-pink-primary);
+    background: var(--m3-sys-pink-container-low);
+    border: 1px solid var(--m3-sys-outline);
+    padding: 3px 10px;
+    border-radius: 8px;
+  }
+
+  /* 正文说明 */
+  .article-p {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.8;
+  }
+  .article-p b {
+    color: var(--m3-sys-pink-primary);
+    font-weight: 600;
+  }
+
+  /* 规范化表格 (属性参数) */
+  .meta-table {
+    width: 100%;
+    margin-top: 14px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .meta-table tr {
+    border-top: 1px solid #f8e5ee;
+  }
+  .meta-table th {
+    text-align: left;
+    color: var(--m3-sys-text-sub);
+    padding: 10px 0;
+    width: 80px;
+    font-weight: 500;
+  }
+  .meta-table td {
+    padding: 10px 0;
+    color: var(--m3-sys-text);
+  }
+
+  /* 区块小标题 */
+  .section-headline {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--m3-sys-pink-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* 状态与形态卡片 (横排紧凑卡) */
+  .forms-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .forms-container { grid-template-columns: repeat(3, 1fr); }
+  }
+  .form-tile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--m3-sys-pink-container-low);
+    border: 1px solid var(--m3-sys-outline);
+    border-radius: var(--m3-radius-md);
+    padding: 10px;
+  }
+  @media (min-width: 640px) {
+    .form-tile { flex-direction: column; align-items: flex-start; }
+  }
+  .form-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  @media (min-width: 640px) {
+    .form-avatar { width: 100%; height: 160px; border-radius: 10px; }
+  }
+  .form-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--m3-sys-text);
+  }
+  .form-info span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--m3-sys-pink-tint);
+  }
+  .form-info p {
+    font-size: 12px;
+    color: var(--m3-sys-text-sub);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* 经典台词：轻便灵动 */
+  .quote-card {
+    background: linear-gradient(135deg, #ffffff, #fff3f8);
+    border-left: 4px solid var(--m3-sys-pink-tint);
+    border-radius: 4px var(--m3-radius-md) var(--m3-radius-md) 4px;
+    padding: 14px 18px;
+  }
+  .quote-cn {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+  }
+  .quote-en {
+    font-size: 11px;
+    color: var(--m3-sys-text-sub);
+    margin-top: 4px;
+    font-family: Georgia, serif;
+  }
+
+  /* 倒计时 Widget (精致扁平表盘) */
+  .countdown-widget {
+    background: #ffffff;
+    border-radius: var(--m3-radius-lg);
+    border: 1px solid var(--m3-sys-outline);
+    padding: 18px;
+    text-align: center;
+  }
+  .cd-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--m3-sys-pink-primary);
+  }
+  .cd-sub {
+    font-size: 11px;
+    color: var(--m3-sys-text-sub);
+    margin-top: 2px;
+  }
+  .cd-grid {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 14px 0 8px;
+  }
+  .cd-slot {
+    background: var(--m3-sys-pink-container-low);
+    border: 1px solid var(--m3-sys-outline);
+    border-radius: 10px;
+    min-width: 54px;
+    padding: 6px 0;
+  }
+  .cd-num {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--m3-sys-pink-primary);
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.1;
+  }
+  .cd-lbl {
+    font-size: 10px;
+    color: var(--m3-sys-text-sub);
+    margin-top: 2px;
+  }
+
+  /* 隐藏彩蛋 Floating Button */
+  #fab {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: var(--m3-sys-pink-primary);
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(190, 24, 93, 0.3);
+    cursor: pointer;
+    z-index: 99;
+  }
+  .dialog-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 1000;
+  }
+  .dialog-scrim.show { display: flex; }
+  .dialog-card {
+    background: #fff;
+    border-radius: var(--m3-radius-xl);
+    padding: 24px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+  }
+  .dialog-card img {
+    width: 100%;
+    border-radius: var(--m3-radius-md);
+    margin-bottom: 12px;
+  }
+  .dialog-card p {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.6;
+  }
+  .dialog-btn {
+    margin-top: 16px;
+    padding: 8px 24px;
+    background: var(--m3-sys-pink-primary);
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <span class="logo-text">PhiLia093</span>
-                <span class="logo-sub">昔涟</span>
-            </div>
-            <nav class="nav">
-                <a href="#about" class="nav-link" data-i18n="nav.about">关于</a>
-                <a href="#story" class="nav-link" data-i18n="nav.story">故事</a>
-                <a href="#forms" class="nav-link" data-i18n="nav.forms">形态</a>
-                <a href="#info" class="nav-link" data-i18n="nav.info">资料</a>
-                <a href="#quotes" class="nav-link" data-i18n="nav.quotes">语录</a>
-            </nav>
-            <div class="header-actions">
-                <button id="langToggle" class="lang-btn" aria-label="切换语言">中文</button>
-                <button id="themeToggle" class="icon-btn" aria-label="切换主题">
-                    <svg class="sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-                    <svg class="moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-                </button>
-            </div>
+
+<!-- 规范顶栏 + 药丸导航 -->
+<header class="m3-top-app-bar">
+  <div class="app-bar-headline">
+    <div class="app-bar-title">
+      <span>昔涟 · 往日的涟漪</span>
+    </div>
+    <span class="app-bar-chip">资料词条</span>
+  </div>
+  <nav class="scroll-tabs">
+    <a href="#overview" class="tab-pill active">概述</a>
+    <a href="#forms" class="tab-pill">形态图鉴</a>
+    <a href="#quotes" class="tab-pill">经典语录</a>
+    <a href="#countdown" class="tab-pill">纪念日倒计时</a>
+  </nav>
+</header>
+
+<main class="m3-layout">
+  <!-- 主画报与基础资料 -->
+  <article class="m3-card hero-card" id="overview">
+    <div class="hero-media">
+      <img src="https://chisatoimg.cc.cd/file/1788272603317_ac4bd11373f082025aaf2edc07a0ecedab64024fad87.webp" alt="昔涟">
+      <div class="hero-overlay"></div>
+      <div class="hero-caption">
+        <h1 class="hero-name">昔涟</h1>
+        <p class="hero-sub">Cyrene · 往日的涟漪</p>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="tags-row">
+        <span class="m3-badge">冰属性</span>
+        <span class="m3-badge">记忆命途</span>
+        <span class="m3-badge">爱 / 哀怜</span>
+      </div>
+      <p class="article-p">
+        最初的智种，无名的<b>第十三位泰坦</b>。她以三千万世轮回的记忆，为翁法罗斯写下逐火的史诗。粉色的发、湛蓝的心、<b>哀怜与爱</b>，是她行走「记忆」命途的原动力。神谕载明：「汝将收梢于花开时，一如终结诞下起始」。
+      </p>
+
+      <table class="meta-table">
+        <tr><th>外文名</th><td>Cyrene</td></tr>
+        <tr><th>神权</th><td>永夜之帷（岁月）／翁法罗斯之心（创世）</td></tr>
+        <tr><th>所属</th><td>无名泰坦大墓 ∞ 哀丽秘榭</td></tr>
+        <tr><th>实装</th><td>2025 · 11 · 05</td></tr>
+        <tr><th>配音</th><td>宴宁、井上麻里奈</td></tr>
+        <tr><th>别名</th><td style="color:var(--m3-sys-text-sub);font-size:12px;">德谬歌 · 迷迷 · 往昔的涟漪 · 无瑕的真我 · 翁法罗斯之心 · 小涟 · 创世之泰坦 · PhiLia093</td></tr>
+      </table>
+    </div>
+  </article>
+
+  <!-- 形态图鉴 -->
+  <section class="m3-card" id="forms">
+    <h3 class="section-headline">形态与演进</h3>
+    <div class="forms-container">
+      <div class="form-tile">
+        <img src="https://chisatoimg.cc.cd/file/1788272600379_3801213fb80e7bec54e7475cda75ae389b504fc23d40.webp" class="form-avatar" alt="迷迷">
+        <div class="form-info">
+          <h4>迷迷</h4>
+          <span>MEM</span>
+          <p>粉色忆灵小妖精，逐火之旅的旅伴。</p>
         </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <div class="search-container">
-                    <div class="search-box">
-                        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                        <input type="text" id="searchInput" data-i18n-placeholder="search.placeholder" placeholder="搜索昔涟的故事、形态、语录..." autocomplete="off">
-                        <button id="searchBtn" class="search-btn" data-i18n="search.button">搜索</button>
-                    </div>
-                    <div class="search-suggestions" id="suggestions"></div>
-                </div>
-                <h1 class="hero-title">
-                    <span class="title-main" data-i18n="hero.title">昔涟</span>
-                    <span class="title-en">Cyrene · PhiLia093</span>
-                </h1>
-                <p class="hero-subtitle" data-i18n="hero.subtitle">往日的涟漪 · 哀丽秘榭的女儿</p>
-                <p class="hero-quote" data-i18n="hero.quote">「汝将收梢于花开时，一如终结诞下起始」</p>
-                <div class="hero-tags">
-                    <span class="tag ice" data-i18n="hero.tag.ice">冰属性</span>
-                    <span class="tag memory" data-i18n="hero.tag.memory">记忆命途</span>
-                    <span class="tag love" data-i18n="hero.tag.love">哀怜 → 爱</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section about-section">
-            <div class="container">
-                <h2 class="section-title" data-i18n="about.title">关于昔涟</h2>
-                <div class="about-grid">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                        </div>
-                        <h3 data-i18n="about.identity.title">身份</h3>
-                        <p data-i18n="about.identity.desc">哀丽秘榭的女儿，哺育「真我」的黄金裔。最初的智种德谬歌，无人知晓的第十三位泰坦，翁法罗斯之心。</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-                        </div>
-                        <h3 data-i18n="about.aliases.title">别名</h3>
-                        <p data-i18n="about.aliases.desc">PhiLia093、迷迷、往昔的涟漪、德谬歌、无瑕的真我、小涟、创世之泰坦、桃子……</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-                        </div>
-                        <h3 data-i18n="about.voice.title">配音</h3>
-                        <p data-i18n="about.voice.desc">汉语：宴宁<br>日语：井上麻里奈<br>英语：Aiden Dawn<br>韩语：조경이</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                        </div>
-                        <h3 data-i18n="about.release.title">实装</h3>
-                        <p data-i18n="about.release.desc">2025年11月5日<br>3.7版本「成为昨日的明天」</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="story" class="section story-section">
-            <div class="container">
-                <h2 class="section-title" data-i18n="story.title">故事与记忆</h2>
-                <div class="story-content">
-                    <div class="story-text">
-                        <p data-i18n="story.p1">流星划过夜空，生命的长河荡起涟漪，闪烁十三种光彩。</p>
-                        <p data-i18n="story.p2">昔涟是白厄的青梅竹马。年少时，她以卡牌观星为他占卜，预言他将成为救世主。当世界需要答案时，她选择以自身为代价，开启漫长的轮回。</p>
-                        <p data-i18n="story.p3">在三千万世的永劫回归中，她以「记忆」为名，记录下每一次逐火的旅程。作为实验因子 PhiLia093，她原本只是固定模式的输出，却在一次次牺牲与铭记中，长出了超出预期的共情与爱。</p>
-                        <p class="story-note" data-i18n="story.note">愿此行，终抵群星。愿往昔的涟漪，在此刻回应你♪</p>
-                    </div>
-                    <div class="story-visual">
-                        <div class="ripple-container" id="rippleBox">
-                            <div class="ripple"></div>
-                            <div class="ripple delay-1"></div>
-                            <div class="ripple delay-2"></div>
-                            <span class="ripple-text">PhiLia093</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="forms" class="section forms-section">
-            <div class="container">
-                <h2 class="section-title" data-i18n="forms.title">形态与演进</h2>
-                <div class="forms-grid">
-                    <div class="form-card" data-form="mem">
-                        <div class="form-badge">MEM</div>
-                        <h3 data-i18n="forms.mem.title">迷迷</h3>
-                        <p data-i18n="forms.mem.desc">粉色忆灵小妖精，逐火之旅的旅伴。始终陪伴在开拓者身边，记录每一次选择与成长。</p>
-                    </div>
-                    <div class="form-card" data-form="young">
-                        <div class="form-badge">YOUNG</div>
-                        <h3 data-i18n="forms.young.title">小昔涟</h3>
-                        <p data-i18n="forms.young.desc">哀丽秘榭的占卜少女。以神谕指引救世未来，手中曾握着形如新月的仪式剑。</p>
-                    </div>
-                    <div class="form-card" data-form="demiurge">
-                        <div class="form-badge">DEMIURGE</div>
-                        <h3 data-i18n="forms.demiurge.title">德谬歌</h3>
-                        <p data-i18n="forms.demiurge.desc">三千万世记忆的「无漏净子」· 创世之泰坦。「当然，这一定是个不同以往的浪漫故事，你也是这么想，对吧？♪」</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="info" class="section info-section">
-            <div class="container">
-                <h2 class="section-title" data-i18n="info.title">角色资料</h2>
-                <div class="info-table-wrapper">
-                    <table class="info-table">
-                        <tr><th data-i18n="info.table.name">中文名</th><td>昔涟</td></tr>
-                        <tr><th data-i18n="info.table.enname">外文名</th><td>Cyrene / キュレネ / 키레네</td></tr>
-                        <tr><th data-i18n="info.table.signal">电信号</th><td>PhiLia093</td></tr>
-                        <tr><th data-i18n="info.table.path">属性 / 命途</th><td data-i18n="info.table.path.value">冰 · 记忆</td></tr>
-                        <tr><th data-i18n="info.table.affiliation">所属</th><td data-i18n="info.table.affiliation.value">无名泰坦大墓 ∞ 哀丽秘榭</td></tr>
-                        <tr><th data-i18n="info.table.authority">神权</th><td data-i18n="info.table.authority.value">永夜之帷（岁月）／翁法罗斯之心（创世）</td></tr>
-                        <tr><th data-i18n="info.table.motive">原动力</th><td data-i18n="info.table.motive.value">哀怜 → 爱</td></tr>
-                        <tr><th data-i18n="info.table.location">常驻位置</th><td data-i18n="info.table.location.value">哀丽秘榭 · 远行渡口</td></tr>
-                    </table>
-                </div>
-                <div class="countdown-card">
-                    <h3 data-i18n="info.countdown.title">昔涟的纪念日</h3>
-                    <div class="countdown" id="countdown">
-                        <div><span id="days">--</span><small>天</small></div>
-                        <div><span id="hours">--</span><small>时</small></div>
-                        <div><span id="minutes">--</span><small>分</small></div>
-                        <div><span id="seconds">--</span><small>秒</small></div>
-                    </div>
-                    <p class="countdown-note" data-i18n="info.countdown.note">目标：2026 · 11 · 12 13:00</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="quotes" class="section quotes-section">
-            <div class="container">
-                <h2 class="section-title" data-i18n="quotes.title">语录</h2>
-                <div class="quotes-carousel" id="quotesCarousel">
-                    <div class="quote-card active">
-                        <p data-i18n="quotes.q1">「这次，与我一起……为故事写下新的篇章吧♪」</p>
-                    </div>
-                    <div class="quote-card">
-                        <p data-i18n="quotes.q2">「希望这个世界，永远不需要『救世主』呀。」</p>
-                    </div>
-                    <div class="quote-card">
-                        <p data-i18n="quotes.q3">「爱会永远存在，对吗？」</p>
-                    </div>
-                    <div class="quote-card">
-                        <p data-i18n="quotes.q4">「要相信浪漫一如初见♪」</p>
-                    </div>
-                    <div class="quote-card">
-                        <p data-i18n="quotes.q5">「然后，一起写下不同以往的诗篇吧♪」</p>
-                    </div>
-                </div>
-                <div class="quote-controls">
-                    <button id="prevQuote" class="control-btn">←</button>
-                    <button id="nextQuote" class="control-btn">→</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p data-i18n="footer.main">PhiLia093 · 昔涟 · 往日的涟漪</p>
-            <p class="footer-sub" data-i18n="footer.sub">愿往昔的涟漪，在此刻回应你 ♪</p>
-            <p class="footer-note" data-i18n="footer.note">本页面为粉丝向介绍，内容整理自公开资料。Google 风格设计。由 PhiLia093 定制</p>
+      </div>
+      <div class="form-tile">
+        <img src="https://chisatoimg.cc.cd/file/1788272609811_2e2eb9389b504fc2d562f2b81086f01190ef76c6c740.webp" class="form-avatar" alt="小昔涟">
+        <div class="form-info">
+          <h4>小昔涟</h4>
+          <span>YOUNG</span>
+          <p>哀丽秘榭的占卜少女，以神谕指引救世未来。</p>
         </div>
-    </footer>
+      </div>
+      <div class="form-tile">
+        <img src="https://chisatoimg.cc.cd/file/1788272761741_8cb1cb1349540923dd54f81c4803c609b3de9c82e307-bkimg-process_v_1_rw_5500_rh_3094_maxl_895.webp" class="form-avatar" alt="德谬歌">
+        <div class="form-info">
+          <h4>德谬歌</h4>
+          <span>DEMIURGE</span>
+          <p>三千万世记忆的「无漏净子」· 创世之泰坦。</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- 语录 -->
+  <section class="quote-card" id="quotes">
+    <p class="quote-cn">「当然，这一定是个不同以往的浪漫故事，你也是这么想，对吧？♪」</p>
+    <p class="quote-en">"Of course — this must be a romance like no other, right? ♪"</p>
+  </section>
+
+  <!-- 倒计时模块 -->
+  <section class="countdown-widget" id="countdown">
+    <div class="cd-title">昔涟的纪念日</div>
+    <div class="cd-sub">目标倒计时：2026 · 11 · 12 13:00</div>
+    <div class="cd-grid">
+      <div class="cd-slot"><div class="cd-num" id="cd_d">--</div><div class="cd-lbl">天</div></div>
+      <div class="cd-slot"><div class="cd-num" id="cd_h">--</div><div class="cd-lbl">时</div></div>
+      <div class="cd-slot"><div class="cd-num" id="cd_m">--</div><div class="cd-lbl">分</div></div>
+      <div class="cd-slot"><div class="cd-num" id="cd_s">--</div><div class="cd-lbl">秒</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--m3-sys-pink-tint);font-weight:500;">愿往昔的涟漪，在此刻回应你 ♪</div>
+  </section>
+</main>
+
+<!-- 彩蛋浮动按钮 -->
+<button id="fab" aria-label="彩蛋">♪</button>
+
+<div class="dialog-scrim" id="modal">
+  <div class="dialog-card">
+    <img src="https://chisatoimg.cc.cd/file/1788270528497_8435e5dde71190ef76c6dc8a38408a16fdfaaf51ca68-bkimg-process_v_1_rw_448_rh_252_maxl_896.webp" alt="彩蛋">
+    <p>“要一直记得这一天呀，伙伴。<br>然后……就拥抱昨天的明天吧。”</p>
+    <div style="font-size:12px;color:var(--m3-sys-pink-primary);margin-top:6px;">—— 昔涟 ♪</div>
+    <button class="dialog-btn" id="modalClose">收下祝福</button>
+  </div>
+</div>
+
+<script>
+  // 1. 倒计时逻辑
+  (function(){
+    var target = new Date(2026, 10, 12, 13, 0, 0);
+    var d = document.getElementById('cd_d'),
+        h = document.getElementById('cd_h'),
+        m = document.getElementById('cd_m'),
+        s = document.getElementById('cd_s');
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    function tick() {
+      var diff = target - new Date();
+      if (diff <= 0) {
+        d.textContent = h.textContent = m.textContent = s.textContent = '00';
+        return;
+      }
+      var sec = Math.floor(diff / 1000);
+      var days = Math.floor(sec / 86400); sec -= days * 86400;
+      var hours = Math.floor(sec / 3600); sec -= hours * 3600;
+      var mins = Math.floor(sec / 60); sec -= mins * 60;
+
+      d.textContent = pad(days);
+      h.textContent = pad(hours);
+      m.textContent = pad(mins);
+      s.textContent = pad(sec);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // 2. 顶部导航随页面滚动联动高亮 (ScrollSpy)
+  (function(){
+    var tabs = document.querySelectorAll('.scroll-tabs .tab-pill');
+    var sections = [
+      document.getElementById('overview'),
+      document.getElementById('forms'),
+      document.getElementById('quotes'),
+      document.getElementById('countdown')
+    ];
+
+    function setActiveTab(index) {
+      tabs.forEach(function(tab, i){
+        if (i === index) {
+          tab.classList.add('active');
+          // 让高亮的药丸在横向滚动条里居中
+          tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+    }
+
+    // 监听页面滚动更新高亮状态
+    window.addEventListener('scroll', function(){
+      var scrollPos = window.scrollY + 120; // 偏移顶部导航栏高度
+      for (var i = sections.length - 1; i >= 0; i--) {
+        var el = sections[i];
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveTab(i);
+          break;
+        }
+      }
+    }, { passive: true });
+
+    // 点击标签时平滑滚动
+    tabs.forEach(function(tab, idx){
+      tab.addEventListener('click', function(e){
+        e.preventDefault();
+        var target = sections[idx];
+        if (target) {
+          var top = target.getBoundingClientRect().top + window.pageYOffset - 90;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          setActiveTab(idx);
+        }
+      });
+    });
+  })();
+
+  // 3. 彩蛋触发（点 10 次）
+  (function(){
+    var btn = document.getElementById('fab');
+    var modal = document.getElementById('modal');
+    var close = document.getElementById('modalClose');
+    var count = 0;
+
+    btn.addEventListener('click', function() {
+      count++;
+      if (count >= 10) modal.classList.add('show');
+    });
+
+    close.addEventListener('click', function() {
+      modal.classList.remove('show');
+      count = 0;
+    });
+  })();
+</script>
+
 </body>
 </html>
