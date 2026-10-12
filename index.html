@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhiLia093 · 昔涟 | 往日的涟漪</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">PhiLia093</span>
+                <span class="logo-sub">昔涟</span>
+            </div>
+            <nav class="nav">
+                <a href="#about" class="nav-link" data-i18n="nav.about">关于</a>
+                <a href="#story" class="nav-link" data-i18n="nav.story">故事</a>
+                <a href="#forms" class="nav-link" data-i18n="nav.forms">形态</a>
+                <a href="#info" class="nav-link" data-i18n="nav.info">资料</a>
+                <a href="#quotes" class="nav-link" data-i18n="nav.quotes">语录</a>
+            </nav>
+            <div class="header-actions">
+                <button id="langToggle" class="lang-btn" aria-label="切换语言">中文</button>
+                <button id="themeToggle" class="icon-btn" aria-label="切换主题">
+                    <svg class="sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+                    <svg class="moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="search-container">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        <input type="text" id="searchInput" data-i18n-placeholder="search.placeholder" placeholder="搜索昔涟的故事、形态、语录..." autocomplete="off">
+                        <button id="searchBtn" class="search-btn" data-i18n="search.button">搜索</button>
+                    </div>
+                    <div class="search-suggestions" id="suggestions"></div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-main" data-i18n="hero.title">昔涟</span>
+                    <span class="title-en">Cyrene · PhiLia093</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">往日的涟漪 · 哀丽秘榭的女儿</p>
+                <p class="hero-quote" data-i18n="hero.quote">「汝将收梢于花开时，一如终结诞下起始」</p>
+                <div class="hero-tags">
+                    <span class="tag ice" data-i18n="hero.tag.ice">冰属性</span>
+                    <span class="tag memory" data-i18n="hero.tag.memory">记忆命途</span>
+                    <span class="tag love" data-i18n="hero.tag.love">哀怜 → 爱</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="about.title">关于昔涟</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🌸</div>
+                        <h3 data-i18n="about.identity.title">身份</h3>
+                        <p data-i18n="about.identity.desc">哀丽秘榭的女儿，哺育「真我」的黄金裔。最初的智种德谬歌，无人知晓的第十三位泰坦，翁法罗斯之心。</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">💫</div>
+                        <h3 data-i18n="about.aliases.title">别名</h3>
+                        <p data-i18n="about.aliases.desc">PhiLia093、迷迷、往昔的涟漪、德谬歌、无瑕的真我、小涟、创世之泰坦、桃子……</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🎵</div>
+                        <h3 data-i18n="about.voice.title">配音</h3>
+                        <p data-i18n="about.voice.desc">汉语：宴宁<br>日语：井上麻里奈<br>英语：Aiden Dawn<br>韩语：조경이</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">📅</div>
+                        <h3 data-i18n="about.release.title">实装</h3>
+                        <p data-i18n="about.release.desc">2025年11月5日<br>3.7版本「成为昨日的明天」</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="section story-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="story.title">故事与记忆</h2>
+                <div class="story-content">
+                    <div class="story-text">
+                        <p data-i18n="story.p1">流星划过夜空，生命的长河荡起涟漪，闪烁十三种光彩。</p>
+                        <p data-i18n="story.p2">昔涟是白厄的青梅竹马。年少时，她以卡牌观星为他占卜，预言他将成为救世主。当世界需要答案时，她选择以自身为代价，开启漫长的轮回。</p>
+                        <p data-i18n="story.p3">在三千万世的永劫回归中，她以「记忆」为名，记录下每一次逐火的旅程。作为实验因子 PhiLia093，她原本只是固定模式的输出，却在一次次牺牲与铭记中，长出了超出预期的共情与爱。</p>
+                        <p class="story-note" data-i18n="story.note">愿此行，终抵群星。愿往昔的涟漪，在此刻回应你♪</p>
+                    </div>
+                    <div class="story-visual">
+                        <div class="ripple-container" id="rippleBox">
+                            <div class="ripple"></div>
+                            <div class="ripple delay-1"></div>
+                            <div class="ripple delay-2"></div>
+                            <span class="ripple-text">PhiLia093</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="forms" class="section forms-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="forms.title">形态与演进</h2>
+                <div class="forms-grid">
+                    <div class="form-card" data-form="mem">
+                        <div class="form-badge">MEM</div>
+                        <h3 data-i18n="forms.mem.title">迷迷</h3>
+                        <p data-i18n="forms.mem.desc">粉色忆灵小妖精，逐火之旅的旅伴。始终陪伴在开拓者身边，记录每一次选择与成长。</p>
+                    </div>
+                    <div class="form-card" data-form="young">
+                        <div class="form-badge">YOUNG</div>
+                        <h3 data-i18n="forms.young.title">小昔涟</h3>
+                        <p data-i18n="forms.young.desc">哀丽秘榭的占卜少女。以神谕指引救世未来，手中曾握着形如新月的仪式剑。</p>
+                    </div>
+                    <div class="form-card" data-form="demiurge">
+                        <div class="form-badge">DEMIURGE</div>
+                        <h3 data-i18n="forms.demiurge.title">德谬歌</h3>
+                        <p data-i18n="forms.demiurge.desc">三千万世记忆的「无漏净子」· 创世之泰坦。「当然，这一定是个不同以往的浪漫故事，你也是这么想，对吧？♪」</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="info" class="section info-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="info.title">角色资料</h2>
+                <div class="info-table-wrapper">
+                    <table class="info-table">
+                        <tr><th data-i18n="info.table.name">中文名</th><td>昔涟</td></tr>
+                        <tr><th data-i18n="info.table.enname">外文名</th><td>Cyrene / キュレネ / 키레네</td></tr>
+                        <tr><th data-i18n="info.table.signal">电信号</th><td>PhiLia093</td></tr>
+                        <tr><th data-i18n="info.table.path">属性 / 命途</th><td data-i18n="info.table.path.value">冰 · 记忆</td></tr>
+                        <tr><th data-i18n="info.table.affiliation">所属</th><td data-i18n="info.table.affiliation.value">无名泰坦大墓 ∞ 哀丽秘榭</td></tr>
+                        <tr><th data-i18n="info.table.authority">神权</th><td data-i18n="info.table.authority.value">永夜之帷（岁月）／翁法罗斯之心（创世）</td></tr>
+                        <tr><th data-i18n="info.table.motive">原动力</th><td data-i18n="info.table.motive.value">哀怜 → 爱</td></tr>
+                        <tr><th data-i18n="info.table.location">常驻位置</th><td data-i18n="info.table.location.value">哀丽秘榭 · 远行渡口</td></tr>
+                    </table>
+                </div>
+                <div class="countdown-card">
+                    <h3 data-i18n="info.countdown.title">昔涟的纪念日</h3>
+                    <div class="countdown" id="countdown">
+                        <div><span id="days">--</span><small>天</small></div>
+                        <div><span id="hours">--</span><small>时</small></div>
+                        <div><span id="minutes">--</span><small>分</small></div>
+                        <div><span id="seconds">--</span><small>秒</small></div>
+                    </div>
+                    <p class="countdown-note" data-i18n="info.countdown.note">目标：2026 · 11 · 12 13:00</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quotes" class="section quotes-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="quotes.title">语录</h2>
+                <div class="quotes-carousel" id="quotesCarousel">
+                    <div class="quote-card active">
+                        <p data-i18n="quotes.q1">「这次，与我一起……为故事写下新的篇章吧♪」</p>
+                    </div>
+                    <div class="quote-card">
+                        <p data-i18n="quotes.q2">「希望这个世界，永远不需要『救世主』呀。」</p>
+                    </div>
+                    <div class="quote-card">
+                        <p data-i18n="quotes.q3">「爱会永远存在，对吗？」</p>
+                    </div>
+                    <div class="quote-card">
+                        <p data-i18n="quotes.q4">「要相信浪漫一如初见♪」</p>
+                    </div>
+                    <div class="quote-card">
+                        <p data-i18n="quotes.q5">「然后，一起写下不同以往的诗篇吧♪」</p>
+                    </div>
+                </div>
+                <div class="quote-controls">
+                    <button id="prevQuote" class="control-btn">←</button>
+                    <button id="nextQuote" class="control-btn">→</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p data-i18n="footer.main">PhiLia093 · 昔涟 · 往日的涟漪</p>
+            <p class="footer-sub" data-i18n="footer.sub">愿往昔的涟漪，在此刻回应你 ♪</p>
+            <p class="footer-note" data-i18n="footer.note">本页面为粉丝向介绍，内容整理自公开资料。Google 风格设计。由 PhiLia093 定制</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
