@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>404 - 记忆沉淀在迷雾深处 | 昔涟</title>
+<style>
+  :root {
+    --m3-sys-pink-primary: #be185d;
+    --m3-sys-pink-tint: #f43f5e;
+    --m3-sys-pink-bg: #fff5f8;
+    --m3-sys-pink-surface: #ffffff;
+    --m3-sys-pink-container: #fce7f3;
+    --m3-sys-pink-container-low: #fff0f6;
+    --m3-sys-pink-on-container: #831843;
+    --m3-sys-outline: #f3d5e2;
+    --m3-sys-text: #1f1f23;
+    --m3-sys-text-sub: #64748b;
+    --m3-radius-xl: 28px;
+    --m3-radius-lg: 20px;
+    --m3-radius-md: 14px;
+    --m3-elevation-1: 0 1px 3px rgba(190, 24, 93, 0.05), 0 4px 12px rgba(190, 24, 93, 0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  
+  body {
+    background: var(--m3-sys-pink-bg);
+    color: var(--m3-sys-text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 顶部标准 Material 3 应用栏 */
+  .m3-top-app-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--m3-sys-outline);
+  }
+  .app-bar-headline {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .app-bar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--m3-sys-pink-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+  }
+  .app-bar-chip {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: var(--m3-sys-pink-container);
+    color: var(--m3-sys-pink-on-container);
+  }
+
+  /* 主内容区域居中容器 */
+  .m3-layout {
+    flex: 1;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* 基础卡片样式 */
+  .m3-card {
+    background: var(--m3-sys-pink-surface);
+    border-radius: var(--m3-radius-lg);
+    border: 1px solid var(--m3-sys-outline);
+    padding: 24px 20px;
+    box-shadow: var(--m3-elevation-1);
+    text-align: center;
+  }
+
+  /* 404 大数字与图标 Header */
+  .error-header {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .error-code {
+    font-size: 76px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--m3-sys-pink-primary), var(--m3-sys-pink-tint));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .error-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 2px solid var(--m3-sys-outline);
+    margin: 12px auto;
+    box-shadow: 0 4px 12px rgba(190, 24, 93, 0.1);
+  }
+
+  .error-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--m3-sys-text);
+    margin-bottom: 8px;
+  }
+  
+  .error-desc {
+    font-size: 13px;
+    color: var(--m3-sys-text-sub);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .error-desc b {
+    color: var(--m3-sys-pink-primary);
+  }
+
+  /* 操作按钮组 */
+  .actions-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .m3-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0,0,0.2,1);
+    cursor: pointer;
+    border: none;
+  }
+  .m3-btn-primary {
+    background: var(--m3-sys-pink-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(190, 24, 93, 0.2);
+  }
+  .m3-btn-primary:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+  .m3-btn-outlined {
+    background: transparent;
+    color: var(--m3-sys-pink-primary);
+    border: 1px solid var(--m3-sys-outline);
+  }
+  .m3-btn-outlined:active {
+    background: var(--m3-sys-pink-container-low);
+  }
+
+  /* 经典台词引用卡片 */
+  .quote-card {
+    background: linear-gradient(135deg, #ffffff, #fff3f8);
+    border-left: 4px solid var(--m3-sys-pink-tint);
+    border-radius: 4px var(--m3-radius-md) var(--m3-radius-md) 4px;
+    padding: 14px 18px;
+    text-align: left;
+  }
+  .quote-cn {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e293b;
+  }
+  .quote-en {
+    font-size: 11px;
+    color: var(--m3-sys-text-sub);
+    margin-top: 4px;
+    font-family: Georgia, serif;
+  }
+
+  /* 自动跳转提示条 */
+  .redirect-notice {
+    font-size: 12px;
+    color: var(--m3-sys-text-sub);
+    background: var(--m3-sys-pink-container-low);
+    border: 1px dashed var(--m3-sys-outline);
+    border-radius: var(--m3-radius-md);
+    padding: 8px 12px;
+  }
+  .redirect-notice span {
+    color: var(--m3-sys-pink-primary);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- 规范顶栏 -->
+<header class="m3-top-app-bar">
+  <div class="app-bar-headline">
+    <a href="/" class="app-bar-title">
+      <span>昔涟 · 往日的涟漪</span>
+    </a>
+    <span class="app-bar-chip">PAGE NOT FOUND</span>
+  </div>
+</header>
+
+<main class="m3-layout">
+  <!-- 主错误提示卡片 -->
+  <article class="m3-card">
+    <div class="error-header">
+      <div class="error-code">404</div>
+      <img src="https://philia093.xilian.org.cn/zy/8cb1cb1349540923dd54f81c4803c609b3de9c82e307-bkimg-process,v_1,rw_5500,rh_3094,maxl_895.webp" class="error-avatar" alt="迷迷">
+    </div>
+
+    <h2 class="error-title">此处的记忆尚未凝聚……</h2>
+    <p class="error-desc">
+      你所寻找的页面似乎已沉淀在<b>三千万世的轮回</b>深处，<br>
+      或者可能已被「永夜之帷」悄悄收起 ♪
+    </p>
+
+    <!-- 操作按钮组 -->
+    <div class="actions-row">
+      <a href="/" class="m3-btn m3-btn-primary">返回主页</a>
+      <button onclick="history.back()" class="m3-btn m3-btn-outlined">返回上一页</button>
+    </div>
+  </article>
+
+  <!-- 经典语录卡片 -->
+  <section class="quote-card">
+    <p class="quote-cn">「即使散作不可及的涟漪，往昔的故事也依然会在起点等候着你♪」</p>
+    <p class="quote-en">"Even as ripples fade out of reach, past stories await you at the start."</p>
+  </section>
+
+  <!-- 倒计时提示 -->
+  <div class="redirect-notice">
+    系统将在 <span id="timer">10</span> 秒后自动带你拥抱昨天的明天（返回首页）
+  </div>
+</main>
+
+<script>
+  // 倒计时自动重定向到首页
+  (function() {
+    var seconds = 10;
+    var timerEl = document.getElementById('timer');
+    
+    var countdown = setInterval(function() {
+      seconds--;
+      if (timerEl) timerEl.textContent = seconds;
+      
+      if (seconds <= 0) {
+        clearInterval(countdown);
+        window.location.href = '/'; // 替换为你的首页路径
+      }
+    }, 1000);
+  })();
+</script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"e67a499b047a4791ab58a6f1a489f5c0","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
