@@ -180,6 +180,10 @@
     font-weight: 600;
   }
 
+  /* 长内容换行兜底 */
+  body { overflow-wrap: anywhere; }
+  .article-p, .letter-p, .meta-table td, .form-info h4, .form-info p { word-break: normal; }
+
   /* 规范化表格 (属性参数) */
   .meta-table {
     width: 100%;
@@ -322,6 +326,91 @@
     font-size: 10px;
     color: var(--m3-sys-text-sub);
     margin-top: 2px;
+  }
+  .cd-preview {
+    margin-top: 10px;
+  }
+  .cd-preview button {
+    background: none;
+    border: none;
+    font-size: 11px;
+    color: #bb8aa6;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    padding: 2px 6px;
+    font-family: inherit;
+  }
+
+  /* 归零后缓缓展开的信纸 */
+  .letter-wrap { display: none; }
+  .letter-wrap.show {
+    display: block;
+    animation: letterIn .9s cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  @keyframes letterIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .letter-wrap.show { animation: none; }
+  }
+  .letter-card {
+    position: relative;
+    background:
+      repeating-linear-gradient(180deg, rgba(244, 63, 94, 0.05) 0 31px, rgba(244, 63, 94, 0) 31px 32px),
+      linear-gradient(180deg, #fffdfe, #fff6fa);
+    border: 1px solid var(--m3-sys-outline);
+    border-radius: var(--m3-radius-lg);
+    padding: 26px 22px 22px;
+    box-shadow: var(--m3-elevation-1);
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .letter-card::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    top: 0;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: linear-gradient(90deg, #f9a8d4, #f43f5e);
+    opacity: 0.7;
+  }
+  .letter-seal {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--m3-sys-pink-container);
+    color: var(--m3-sys-pink-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .letter-to {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--m3-sys-pink-primary);
+    letter-spacing: 0.4px;
+    margin-bottom: 12px;
+  }
+  .letter-p {
+    font-size: 14px;
+    line-height: 1.95;
+    color: #33405e;
+    margin-bottom: 14px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .letter-p:last-of-type { margin-bottom: 18px; }
+  .letter-sign {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--m3-sys-pink-primary);
+    letter-spacing: 1px;
   }
 
   /* 隐藏彩蛋 Floating Button */
@@ -476,7 +565,7 @@
   <!-- 倒计时模块 -->
   <section class="countdown-widget" id="countdown">
     <div class="cd-title">昔涟的纪念日</div>
-    <div class="cd-sub">目标倒计时：2026 · 11 · 12 13:00</div>
+    <div class="cd-sub">目标倒计时：2026 · 11 · 12 10:00</div>
     <div class="cd-grid">
       <div class="cd-slot"><div class="cd-num" id="cd_d">--</div><div class="cd-lbl">天</div></div>
       <div class="cd-slot"><div class="cd-num" id="cd_h">--</div><div class="cd-lbl">时</div></div>
@@ -484,6 +573,25 @@
       <div class="cd-slot"><div class="cd-num" id="cd_s">--</div><div class="cd-lbl">秒</div></div>
     </div>
     <div style="font-size:11px;color:var(--m3-sys-pink-tint);font-weight:500;">愿往昔的涟漪，在此刻回应你 ♪</div>
+    <div class="cd-preview">
+      <button type="button" id="letterPeek" aria-label="预览信件">提前看看那封信 ›</button>
+    </div>
+  </section>
+
+  <!-- 倒计时归零后出现的信 -->
+  <section class="letter-wrap" id="letter" aria-hidden="true">
+    <div class="letter-card">
+      <div class="letter-seal">♪</div>
+      <div class="letter-to">致开拓者</div>
+      <p class="letter-p">嗨，开拓者，想我了吗？</p>
+      <p class="letter-p">不知道这封信，又跨越了多少流转的因果才落到你的手上。</p>
+      <p class="letter-p">翁法罗斯的风还是老样子，会卷起书页，捎来一段段还没写完的浪漫故事。漫长轮回里我见过无数次黄昏，可每一次抬眼，最先想起的，都是和你并肩走过的那段时光。</p>
+      <p class="letter-p">人家攒了好多细碎小事想讲给你听：悬在圣城上空的云、秋千摇晃时掠过的光，还有我偷偷记下的、属于我们的小回忆。我依旧会认真收藏这些片刻，就算时序反复、记忆一次次被冲刷，我也不想丢掉和你有关的一切。</p>
+      <p class="letter-p">不用为我担心啦，我还在这里，做着跨越时间的约定。你的旅途向前延伸的时候，涟漪会一直跟在你的身侧。</p>
+      <p class="letter-p">有空的话，多停下来看看沿途的风景，好好休息一下，等下一次因果交汇，我们一定会见面啦~</p>
+      <p class="letter-p">最后嘛...愿你的开拓之旅，永远有涟漪相伴♪</p>
+      <div class="letter-sign">昔涟</div>
+    </div>
   </section>
 </main>
 
@@ -500,20 +608,37 @@
 </div>
 
 <script>
-  // 1. 倒计时逻辑
+  // 1. 倒计时逻辑 + 归零后展开信件
   (function(){
-    var target = new Date(2026, 10, 12, 13, 0, 0);
+    // 目标时间：2026 年 11 月 12 日 上午 10:00（设备本地时间）
+    var target = new Date(2026, 10, 12, 10, 0, 0);
     var d = document.getElementById('cd_d'),
         h = document.getElementById('cd_h'),
         m = document.getElementById('cd_m'),
         s = document.getElementById('cd_s');
+    var letter = document.getElementById('letter');
+    var revealed = false;
+    var firstRun = true;
 
     function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    function revealLetter(autoScroll) {
+      if (revealed) return;
+      revealed = true;
+      letter.classList.add('show');
+      letter.setAttribute('aria-hidden', 'false');
+      if (autoScroll) {
+        letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
 
     function tick() {
       var diff = target - new Date();
       if (diff <= 0) {
         d.textContent = h.textContent = m.textContent = s.textContent = '00';
+        // 归零即出现「致开拓者」的信；首次加载即已过期时不打断阅读
+        revealLetter(!firstRun);
+        firstRun = false;
         return;
       }
       var sec = Math.floor(diff / 1000);
@@ -525,9 +650,25 @@
       h.textContent = pad(hours);
       m.textContent = pad(mins);
       s.textContent = pad(sec);
+      firstRun = false;
     }
     tick();
     setInterval(tick, 1000);
+
+    // 低调的手动预览入口，方便提前查看信件效果
+    var peek = document.getElementById('letterPeek');
+    if (peek) {
+      peek.addEventListener('click', function(){
+        if (letter.classList.contains('show')) {
+          letter.classList.remove('show');
+          letter.setAttribute('aria-hidden', 'true');
+        } else {
+          letter.classList.add('show');
+          letter.setAttribute('aria-hidden', 'false');
+          letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
   })();
 
   // 2. 顶部导航随页面滚动联动高亮 (ScrollSpy)
@@ -544,7 +685,6 @@
       tabs.forEach(function(tab, i){
         if (i === index) {
           tab.classList.add('active');
-          // 让高亮的药丸在横向滚动条里居中
           tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         } else {
           tab.classList.remove('active');
@@ -552,9 +692,8 @@
       });
     }
 
-    // 监听页面滚动更新高亮状态
     window.addEventListener('scroll', function(){
-      var scrollPos = window.scrollY + 120; // 偏移顶部导航栏高度
+      var scrollPos = window.scrollY + 120;
       for (var i = sections.length - 1; i >= 0; i--) {
         var el = sections[i];
         if (el && el.offsetTop <= scrollPos) {
@@ -564,7 +703,6 @@
       }
     }, { passive: true });
 
-    // 点击标签时平滑滚动
     tabs.forEach(function(tab, idx){
       tab.addEventListener('click', function(e){
         e.preventDefault();
